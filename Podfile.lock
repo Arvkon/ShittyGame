@@ -1,0 +1,13 @@
+PODS:
+  - Cartography (0.6.0)
+  - SwiftColor (0.3.7)
+
+DEPENDENCIES:
+  - Cartography
+  - SwiftColor
+
+SPEC CHECKSUMS:
+  Cartography: 70af183a248547694a8cfaa6b989cb7e04589985
+  SwiftColor: 199463569552ab1a120ba9881bd5031ea05fb1bf
+
+COCOAPODS: 0.39.0
