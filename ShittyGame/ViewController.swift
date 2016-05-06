@@ -37,6 +37,16 @@ class ViewController: UIViewController {
             coverView.top == coverView.superview!.bottom
         }
         
+        view.layoutIfNeeded()
+        
+        coverView.addSubview(hashtagLabel)
+        
+        constrain(hashtagLabel) { hashtagLabel in
+            let dieSideImageViewTop = dieSideImageView.frame.origin.y
+            hashtagLabel.centerX == hashtagLabel.superview!.centerX
+            hashtagLabel.bottom  == hashtagLabel.superview!.bottom - dieSideImageViewTop
+        }
+        
         setupSound()
     }
     
@@ -80,6 +90,15 @@ class ViewController: UIViewController {
         coverView.backgroundColor = UIColor.brownColor()
         
         return coverView
+    }()
+    
+    lazy var hashtagLabel: UILabel = {
+        let hashtagLabel = UILabel(frame: .zero)
+        hashtagLabel.font = UIFont.systemFontOfSize(17.0)
+        hashtagLabel.text = "#shittygamescore"
+        hashtagLabel.textColor = UIColor("ffdc00")
+        
+        return hashtagLabel
     }()
     
     // MARK: - Properties
