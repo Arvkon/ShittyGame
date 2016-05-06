@@ -90,6 +90,8 @@ class ViewController: UIViewController {
     
     var coverViewBottomOffset: CGFloat = 0.0
     
+    let pointsLabelFont = UIFont.systemFontOfSize(34.0, weight: UIFontWeightMedium)
+    
     // MARK: - Timer
     
     var timer: NSTimer?
@@ -162,7 +164,52 @@ class ViewController: UIViewController {
             }
         } else {
             currentScore += currentEmoji.points
-            scoreLabel.text = "\(currentScore)"
+            animatePointsLabelFor(currentEmoji)
+        }
+    }
+    
+    func updateScoreLabel() {
+        UIView.animateWithDuration(0.1, animations: {
+            self.scoreLabel.alpha = 0.0
+        }, completion: { _ in
+            self.scoreLabel.text = "\(self.currentScore)"
+            UIView.animateWithDuration(0.2) {
+                self.scoreLabel.alpha = 1.0
+            }
+        })
+    }
+    
+    func animatePointsLabelFor(emoji: Emoji) {
+        let pointsLabel = UILabel(frame: .zero)
+        pointsLabel.textColor = UIColor("54b649")
+        pointsLabel.text = "+\(emoji.points)"
+        pointsLabel.font = pointsLabelFont
+        view.addSubview(pointsLabel)
+        
+        constrain(pointsLabel) { pointsLabel in
+            pointsLabel.centerX == pointsLabel.superview!.centerX
+        }
+        let animationConstraint = constrain(pointsLabel) { pointsLabel in
+            pointsLabel.centerY == pointsLabel.superview!.centerY - 60.0
+        }
+        view.layoutIfNeeded()
+        
+        // Animations
+        
+        constrain(pointsLabel, scoreLabel, replace: animationConstraint) { pointsLabel, scoreLabel in
+            pointsLabel.top == scoreLabel.top
+        }
+        UIView.animateWithDuration(0.6, animations: {
+            self.view.layoutIfNeeded()
+            pointsLabel.alpha = 0.0
+        }, completion: { _ in
+            pointsLabel.removeFromSuperview()
+        })
+        
+        // Trigger score label update separately for better timing
+        let delay = dispatch_time(DISPATCH_TIME_NOW, Int64(Double(NSEC_PER_SEC) * 0.35))
+        dispatch_after(delay, dispatch_get_main_queue()) {
+            self.updateScoreLabel()
         }
     }
 }
