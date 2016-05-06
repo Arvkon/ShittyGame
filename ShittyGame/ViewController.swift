@@ -10,12 +10,19 @@ class ViewController: UIViewController {
         view.backgroundColor = UIColor("91ccec")
         
         dieSideImageView.addSubview(emojiButton)
+        
+        constrain(emojiButton) { emojiButton in
+            emojiButton.centerX == emojiButton.superview!.centerX
+            emojiButton.centerY == emojiButton.superview!.centerY
+        }
+        
+        view.addSubview(scoreLabel)
         view.addSubview(dieSideImageView)
         view.addSubview(coverView)
         
-        constrain(emojiButton, dieSideImageView, coverView) { emojiButton, dieSideImageView, coverView in
-            emojiButton.centerX == emojiButton.superview!.centerX
-            emojiButton.centerY == emojiButton.superview!.centerY
+        constrain(scoreLabel, dieSideImageView, coverView) { scoreLabel, dieSideImageView, coverView in
+            scoreLabel.centerX == scoreLabel.superview!.centerX
+            scoreLabel.bottom  == dieSideImageView.top - view.bounds.height * 0.09
             
             dieSideImageView.centerX == dieSideImageView.superview!.centerX
             dieSideImageView.centerY == dieSideImageView.superview!.centerY
@@ -31,6 +38,14 @@ class ViewController: UIViewController {
     }
     
     // MARK: - Views
+    
+    lazy var scoreLabel: UILabel = {
+        let scoreLabel = UILabel(frame: .zero)
+        scoreLabel.font = UIFont.systemFontOfSize(60.0)
+        scoreLabel.text = "\(self.currentScore)"
+        
+        return scoreLabel
+    }()
     
     lazy var dieSideImageView: TouchDownImageView = {
         let dieSideImageView = TouchDownImageView(image: UIImage(named: "DieSide"))
@@ -65,6 +80,8 @@ class ViewController: UIViewController {
     }()
     
     // MARK: - Properties
+    
+    var currentScore: Int = 0
     
     var currentEmoji = Emoji.Poop
     
@@ -118,6 +135,9 @@ class ViewController: UIViewController {
             UIView.animateWithDuration(0.5) {
                 self.view.layoutIfNeeded()
             }
+        } else {
+            currentScore += currentEmoji.points
+            scoreLabel.text = "\(currentScore)"
         }
     }
 }
