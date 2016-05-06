@@ -72,19 +72,57 @@ class ViewController: UIViewController {
     
     var coverViewBottomOffset: CGFloat = 0.0
     
+    // MARK: - Timer
+    
+    var timer: NSTimer?
+    
+    func startTimer() {
+        timer?.invalidate()
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: .changeEmoji, userInfo: nil, repeats: true)
+    }
+    
+    func stopTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
+    
     // MARK: - Methods
     
-    func tapDetected() {
-        coverViewBottomOffset += view.bounds.height / 15
-        constrain(coverView, replace: coverViewTopConstraint) { coverView in
-            coverView.top == coverView.superview!.bottom - coverViewBottomOffset
+    func changeEmoji() {
+        var newEmoji = Emoji.random()
+        while newEmoji == currentEmoji {
+            newEmoji = Emoji.random()
         }
-        UIView.animateWithDuration(0.5) {
-            self.view.layoutIfNeeded()
+        emojiButton.setImage(newEmoji.templateImage, forState: .Normal)
+        emojiButton.setImage(newEmoji.templateImage, forState: .Highlighted)
+        currentEmoji = newEmoji
+    }
+    
+    func tapDetected() {
+        if timer == nil {
+            changeEmoji()
+            startTimer()
+            return
+        }
+        
+        stopTimer()
+        
+        emojiButton.setImage(currentEmoji.image, forState: .Normal)
+        emojiButton.setImage(currentEmoji.image, forState: .Highlighted)
+        
+        if currentEmoji == .Poop {
+            coverViewBottomOffset += view.bounds.height / 15
+            constrain(coverView, replace: coverViewTopConstraint) { coverView in
+                coverView.top == coverView.superview!.bottom - coverViewBottomOffset
+            }
+            UIView.animateWithDuration(0.5) {
+                self.view.layoutIfNeeded()
+            }
         }
     }
 }
 
 private extension Selector {
+    static let changeEmoji = #selector(ViewController.changeEmoji)
     static let tapDetected = #selector(ViewController.tapDetected)
 }
