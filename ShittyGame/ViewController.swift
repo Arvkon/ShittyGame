@@ -36,6 +36,8 @@ class ViewController: UIViewController {
         constrain(coverView, replace: coverViewTopConstraint) { coverView in
             coverView.top == coverView.superview!.bottom
         }
+        
+        setupSound()
     }
     
     // MARK: - Views
@@ -108,21 +110,45 @@ class ViewController: UIViewController {
     
     // MARK: - Sound
     
-    var audioPlayer: AVAudioPlayer?
+    enum Sound: String {
+        case EvilLaugh = "EvilLaugh"
+        case KaChing = "KaChing"
+        
+        static let allValues = [EvilLaugh, KaChing]
+    }
     
-    func playSound() {
-        guard let sound = NSDataAsset(name: "ShittyLaugh1") else {
-            return
+    lazy var soundData: [Sound: NSData] = {
+        var soundData = [Sound: NSData]()
+        for sound in Sound.allValues {
+            soundData[sound] = NSDataAsset(name: sound.rawValue)!.data
         }
         
+        return soundData
+    }()
+    
+    func setupSound() {
         do {
             let audioSession = AVAudioSession.sharedInstance()
             try audioSession.setCategory(AVAudioSessionCategoryPlayback)
             try audioSession.setActive(true)
-            try audioPlayer = AVAudioPlayer(data: sound.data, fileTypeHint: AVFileTypeWAVE)
-            audioPlayer!.play()
         } catch {
-            print("Error initializing AVAudioPlayer")
+            print("Error initializing AVAudioSession")
+        }
+    }
+    
+    var audioPlayers = [AVAudioPlayer]()
+    
+    func playSound(sound: Sound) {
+        // Play sound on background queue to prevent lag
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)) {
+            do {
+                let audioPlayer = try AVAudioPlayer(data: self.soundData[sound]!, fileTypeHint: AVFileTypeWAVE)
+                audioPlayer.delegate = self
+                self.audioPlayers.append(audioPlayer)
+                audioPlayer.play()
+            } catch {
+                print("Error initializing AVAudioPlayer")
+            }
         }
     }
     
@@ -158,13 +184,11 @@ class ViewController: UIViewController {
             UIView.animateWithDuration(0.5) {
                 self.view.layoutIfNeeded()
             }
-            // Play sound on background queue to prevent lag
-            dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)) {
-                self.playSound()
-            }
+            playSound(.EvilLaugh)
         } else {
             currentScore += currentEmoji.points
             animatePointsLabelFor(currentEmoji)
+            playSound(.KaChing)
         }
     }
     
@@ -210,6 +234,14 @@ class ViewController: UIViewController {
         let delay = dispatch_time(DISPATCH_TIME_NOW, Int64(Double(NSEC_PER_SEC) * 0.35))
         dispatch_after(delay, dispatch_get_main_queue()) {
             self.updateScoreLabel()
+        }
+    }
+}
+
+extension ViewController: AVAudioPlayerDelegate {
+    func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
+        if let index = audioPlayers.indexOf(player) {
+            audioPlayers.removeAtIndex(index)
         }
     }
 }
