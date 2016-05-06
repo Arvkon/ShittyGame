@@ -32,14 +32,20 @@ class ViewController: UIViewController {
     
     // MARK: - Views
     
-    lazy var dieSideImageView: UIImageView = {
-        let dieSideImageView = UIImageView(image: UIImage(named: "DieSide"))
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: .tapDetected)
-        dieSideImageView.addGestureRecognizer(tapRecognizer)
+    lazy var dieSideImageView: TouchDownImageView = {
+        let dieSideImageView = TouchDownImageView(image: UIImage(named: "DieSide"))
+        dieSideImageView.touchDownAction = self.tapDetected
         dieSideImageView.userInteractionEnabled = true
         
         return dieSideImageView
     }()
+    
+    class TouchDownImageView: UIImageView {
+        var touchDownAction: (() -> Void)?
+        override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+            touchDownAction?()
+        }
+    }
     
     lazy var emojiButton: UIButton = {
         let emojiButton = UIButton(frame: .zero)
