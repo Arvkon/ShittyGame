@@ -9,10 +9,14 @@ class ViewController: UIViewController {
         
         view.backgroundColor = UIColor("91ccec")
         
+        dieSideImageView.addSubview(emojiButton)
         view.addSubview(dieSideImageView)
         view.addSubview(coverView)
         
-        constrain(dieSideImageView, coverView) { dieSideImageView, coverView in
+        constrain(emojiButton, dieSideImageView, coverView) { emojiButton, dieSideImageView, coverView in
+            emojiButton.centerX == emojiButton.superview!.centerX
+            emojiButton.centerY == emojiButton.superview!.centerY
+            
             dieSideImageView.centerX == dieSideImageView.superview!.centerX
             dieSideImageView.centerY == dieSideImageView.superview!.centerY
             
@@ -37,6 +41,16 @@ class ViewController: UIViewController {
         return dieSideImageView
     }()
     
+    lazy var emojiButton: UIButton = {
+        let emojiButton = UIButton(frame: .zero)
+        emojiButton.tintColor = UIColor("bbbbc8")
+        emojiButton.setImage(self.currentEmoji.image, forState: .Normal)
+        emojiButton.setImage(self.currentEmoji.image, forState: .Highlighted)
+        emojiButton.addTarget(self, action: .tapDetected, forControlEvents: .TouchDown)
+        
+        return emojiButton
+    }()
+    
     lazy var coverView: UIView = {
         let coverView = UIView(frame: .zero)
         coverView.backgroundColor = UIColor.brownColor()
@@ -45,6 +59,8 @@ class ViewController: UIViewController {
     }()
     
     // MARK: - Properties
+    
+    var currentEmoji = Emoji.Poop
     
     let coverViewTopConstraint = ConstraintGroup()
     
