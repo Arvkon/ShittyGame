@@ -1,6 +1,7 @@
 import UIKit
 import Cartography
 import SwiftColor
+import AVFoundation
 
 class ViewController: UIViewController {
     
@@ -103,6 +104,26 @@ class ViewController: UIViewController {
         timer = nil
     }
     
+    // MARK: - Sound
+    
+    var audioPlayer: AVAudioPlayer?
+    
+    func playSound() {
+        guard let sound = NSDataAsset(name: "ShittyLaugh1") else {
+            return
+        }
+        
+        do {
+            let audioSession = AVAudioSession.sharedInstance()
+            try audioSession.setCategory(AVAudioSessionCategoryPlayback)
+            try audioSession.setActive(true)
+            try audioPlayer = AVAudioPlayer(data: sound.data, fileTypeHint: AVFileTypeWAVE)
+            audioPlayer!.play()
+        } catch {
+            print("Error initializing AVAudioPlayer")
+        }
+    }
+    
     // MARK: - Methods
     
     func changeEmoji() {
@@ -134,6 +155,10 @@ class ViewController: UIViewController {
             }
             UIView.animateWithDuration(0.5) {
                 self.view.layoutIfNeeded()
+            }
+            // Play sound on background queue to prevent lag
+            dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)) {
+                self.playSound()
             }
         } else {
             currentScore += currentEmoji.points
