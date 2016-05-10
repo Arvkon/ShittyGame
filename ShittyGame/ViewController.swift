@@ -166,6 +166,11 @@ class ViewController: UIViewController {
     
     // MARK: - Methods
     
+    func setUserInteractionEnabled(enabled: Bool) {
+        emojiButton.userInteractionEnabled = enabled
+        dieSideImageView.userInteractionEnabled = enabled
+    }
+    
     func changeEmoji() {
         var newEmoji = Emoji.random()
         while newEmoji == currentEmoji {
@@ -196,6 +201,7 @@ class ViewController: UIViewController {
             UIView.animateWithDuration(0.5) {
                 self.view.layoutIfNeeded()
             }
+            setUserInteractionEnabled(false)
             playSound(Sound.randomEvilLaugh())
         } else {
             currentScore += currentEmoji.points
@@ -254,6 +260,10 @@ extension ViewController: AVAudioPlayerDelegate {
     func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
         if let index = audioPlayers.indexOf(player) {
             audioPlayers.removeAtIndex(index)
+            if audioPlayers.isEmpty {
+                startTimer()
+                setUserInteractionEnabled(true)
+            }
         }
     }
 }
