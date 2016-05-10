@@ -13,6 +13,7 @@
 		85B23D811CDB8F9A003A3CA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B23D801CDB8F9A003A3CA6 /* AppDelegate.swift */; };
 		85B23D831CDB8F9A003A3CA6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B23D821CDB8F9A003A3CA6 /* ViewController.swift */; };
 		85B23D881CDB8F9A003A3CA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85B23D871CDB8F9A003A3CA6 /* Assets.xcassets */; };
+		85E2B7821CE211BA00B5CFEC /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E2B7811CE211BA00B5CFEC /* Sound.swift */; };
 		9F9DBFF6E9C8D71C2D9789EE /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F27C21840BB5E3384C01E5DD /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +27,7 @@
 		85B23D821CDB8F9A003A3CA6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		85B23D871CDB8F9A003A3CA6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		85B23D8C1CDB8F9A003A3CA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		85E2B7811CE211BA00B5CFEC /* Sound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		CB65584902B7E4F9C33044E4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F27C21840BB5E3384C01E5DD /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -74,6 +76,7 @@
 				85B23D801CDB8F9A003A3CA6 /* AppDelegate.swift */,
 				85B23D821CDB8F9A003A3CA6 /* ViewController.swift */,
 				851AA7F51CDBEA3200C09AF2 /* Emoji.swift */,
+				85E2B7811CE211BA00B5CFEC /* Sound.swift */,
 				85B23D871CDB8F9A003A3CA6 /* Assets.xcassets */,
 				851AA7F71CDBEC0C00C09AF2 /* Emoji.xcassets */,
 				851AA7FD1CDCAF1E00C09AF2 /* Sounds.xcassets */,
@@ -216,6 +219,7 @@
 				851AA7F61CDBEA3200C09AF2 /* Emoji.swift in Sources */,
 				85B23D831CDB8F9A003A3CA6 /* ViewController.swift in Sources */,
 				85B23D811CDB8F9A003A3CA6 /* AppDelegate.swift in Sources */,
+				85E2B7821CE211BA00B5CFEC /* Sound.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

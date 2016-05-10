@@ -129,13 +129,6 @@ class ViewController: UIViewController {
     
     // MARK: - Sound
     
-    enum Sound: String {
-        case EvilLaugh = "EvilLaugh"
-        case KaChing = "KaChing"
-        
-        static let allValues = [EvilLaugh, KaChing]
-    }
-    
     lazy var soundData: [Sound: NSData] = {
         var soundData = [Sound: NSData]()
         for sound in Sound.allValues {
@@ -203,7 +196,7 @@ class ViewController: UIViewController {
             UIView.animateWithDuration(0.5) {
                 self.view.layoutIfNeeded()
             }
-            playSound(.EvilLaugh)
+            playSound(Sound.randomEvilLaugh())
         } else {
             currentScore += currentEmoji.points
             animatePointsLabelFor(currentEmoji)
