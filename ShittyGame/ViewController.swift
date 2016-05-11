@@ -261,6 +261,7 @@ extension ViewController: AVAudioPlayerDelegate {
         if let index = audioPlayers.indexOf(player) {
             audioPlayers.removeAtIndex(index)
             if audioPlayers.isEmpty {
+                changeEmoji()
                 startTimer()
                 setUserInteractionEnabled(true)
             }
