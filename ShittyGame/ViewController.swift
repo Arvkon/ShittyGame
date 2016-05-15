@@ -260,6 +260,7 @@ class ViewController: UIViewController {
     }
     
     var audioPlayers = [AVAudioPlayer]()
+    var evilLaughPlayer: AVAudioPlayer?
     
     func playSound(sound: Sound) {
         // Play sound on background queue to prevent lag
@@ -267,7 +268,11 @@ class ViewController: UIViewController {
             do {
                 let audioPlayer = try AVAudioPlayer(data: self.soundData[sound]!, fileTypeHint: AVFileTypeWAVE)
                 audioPlayer.delegate = self
-                self.audioPlayers.append(audioPlayer)
+                if sound.isEvilLaugh {
+                    self.evilLaughPlayer = audioPlayer
+                } else {
+                    self.audioPlayers.append(audioPlayer)
+                }
                 audioPlayer.play()
             } catch {
                 print("Error initializing AVAudioPlayer")
@@ -395,13 +400,13 @@ class ViewController: UIViewController {
 
 extension ViewController: AVAudioPlayerDelegate {
     func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
-        if let index = audioPlayers.indexOf(player) {
+        if player == evilLaughPlayer {
+            changeEmoji()
+            startEmojiTimer()
+            evilLaughPlayer = nil
+            setUserInteractionEnabled(true)
+        } else if let index = audioPlayers.indexOf(player) {
             audioPlayers.removeAtIndex(index)
-            if audioPlayers.isEmpty {
-                changeEmoji()
-                startEmojiTimer()
-                setUserInteractionEnabled(true)
-            }
         }
     }
 }

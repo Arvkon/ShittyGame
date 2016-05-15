@@ -23,4 +23,8 @@ enum Sound: String {
         indexOfPreviousEvilLaugh = index
         return Sound.evilLaughs[index]
     }
+    
+    var isEvilLaugh: Bool {
+        return Sound.evilLaughs.contains(self)
+    }
 }
