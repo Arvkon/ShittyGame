@@ -10,6 +10,7 @@
 		851AA7F61CDBEA3200C09AF2 /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851AA7F51CDBEA3200C09AF2 /* Emoji.swift */; };
 		851AA7F81CDBEC0C00C09AF2 /* Emoji.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 851AA7F71CDBEC0C00C09AF2 /* Emoji.xcassets */; };
 		851AA7FE1CDCAF1E00C09AF2 /* Sounds.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 851AA7FD1CDCAF1E00C09AF2 /* Sounds.xcassets */; };
+		852F0CF51CE61FA800A8C258 /* PressStart2P.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 852F0CB91CE4D1D400A8C258 /* PressStart2P.ttf */; };
 		85B23D811CDB8F9A003A3CA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B23D801CDB8F9A003A3CA6 /* AppDelegate.swift */; };
 		85B23D831CDB8F9A003A3CA6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B23D821CDB8F9A003A3CA6 /* ViewController.swift */; };
 		85B23D881CDB8F9A003A3CA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85B23D871CDB8F9A003A3CA6 /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 		851AA7F51CDBEA3200C09AF2 /* Emoji.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
 		851AA7F71CDBEC0C00C09AF2 /* Emoji.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Emoji.xcassets; sourceTree = "<group>"; };
 		851AA7FD1CDCAF1E00C09AF2 /* Sounds.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Sounds.xcassets; sourceTree = "<group>"; };
+		852F0CB91CE4D1D400A8C258 /* PressStart2P.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PressStart2P.ttf; sourceTree = "<group>"; };
 		85B23D7D1CDB8F9A003A3CA6 /* ShittyGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShittyGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85B23D801CDB8F9A003A3CA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85B23D821CDB8F9A003A3CA6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				85B23D871CDB8F9A003A3CA6 /* Assets.xcassets */,
 				851AA7F71CDBEC0C00C09AF2 /* Emoji.xcassets */,
 				851AA7FD1CDCAF1E00C09AF2 /* Sounds.xcassets */,
+				852F0CB91CE4D1D400A8C258 /* PressStart2P.ttf */,
 				85B23D8C1CDB8F9A003A3CA6 /* Info.plist */,
 			);
 			path = ShittyGame;
@@ -158,6 +161,7 @@
 				851AA7F81CDBEC0C00C09AF2 /* Emoji.xcassets in Resources */,
 				85B23D881CDB8F9A003A3CA6 /* Assets.xcassets in Resources */,
 				851AA7FE1CDCAF1E00C09AF2 /* Sounds.xcassets in Resources */,
+				852F0CF51CE61FA800A8C258 /* PressStart2P.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
