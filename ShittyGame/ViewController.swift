@@ -31,8 +31,11 @@ class ViewController: UIViewController {
             
             speechBubbleButton.left   == speechBubbleButton.superview!.left + 20.0
             speechBubbleButton.right  == speechBubbleButton.superview!.right - 20.0
-            speechBubbleButton.bottom == speechBubbleButton.superview!.bottom - 30.0
             speechBubbleButton.height == 90.0
+        }
+        
+        let speechBubbleBottomConstraint = constrain(speechBubbleButton) { speechBubbleButton in
+            speechBubbleButton.bottom == speechBubbleButton.superview!.bottom - 70.0
         }
         
         constrain(coverView) { coverView in
@@ -57,12 +60,26 @@ class ViewController: UIViewController {
         
         setupSound()
         
-        performAfterSeconds(1.0) {
-            UIView.animateWithDuration(0.5) {
-                self.speechBubbleButton.alpha = 1.0
+        // Animations
+        
+        performAfterSeconds(1.3) {
+            UIView.animateWithDuration(0.3) {
+                self.emojiButton.alpha = 1.0
+            }
+            // Start speech bubbles' downward motion
+            constrain(self.speechBubbleButton, replace: speechBubbleBottomConstraint) { speechBubbleButton in
+                speechBubbleButton.bottom == speechBubbleButton.superview!.bottom - 30.0
+            }
+            UIView.animateWithDuration(1.3) {
+                self.speechBubbleButton.layoutIfNeeded()
             }
         }
         performAfterSeconds(1.9) {
+            UIView.animateWithDuration(0.7) {
+                self.speechBubbleButton.alpha = 1.0
+            }
+        }
+        performAfterSeconds(2.8) {
             self.startTextTimer()
         }
     }
@@ -100,6 +117,7 @@ class ViewController: UIViewController {
         emojiButton.setImage(self.currentEmoji.image, forState: .Highlighted)
         emojiButton.addTarget(self, action: .tapDetected, forControlEvents: .TouchDown)
         emojiButton.userInteractionEnabled = false
+        emojiButton.alpha = 0.0
         
         return emojiButton
     }()
