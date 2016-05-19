@@ -156,7 +156,7 @@ class ViewController: UIViewController {
     
     var currentScore: Int = 0
     
-    var currentEmoji = Emoji.Poop
+    var currentEmoji = Emoji.💩
     
     let coverViewTopConstraint = ConstraintGroup()
     
@@ -319,7 +319,7 @@ class ViewController: UIViewController {
         emojiButton.setImage(currentEmoji.image, forState: .Normal)
         emojiButton.setImage(currentEmoji.image, forState: .Highlighted)
         
-        if currentEmoji == .Poop {
+        if currentEmoji == .💩 {
             coverViewBottomOffset += view.bounds.height / 15
             constrain(coverView, replace: coverViewTopConstraint) { coverView in
                 coverView.top == coverView.superview!.bottom - coverViewBottomOffset

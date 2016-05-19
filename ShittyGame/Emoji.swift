@@ -1,24 +1,24 @@
 import UIKit
 
 enum Emoji {
-    case Bathtub
-    case Bee
-    case Cat
-    case Diamond
-    case Donut
-    case Fistbump
-    case Goat
-    case Invader
-    case Kiss
-    case Mushroom
-    case Poop
-    case Rocket
-    case Sleep
-    case Star
-    case Tea
-    case TopHat
+    case 🛀 // U+1F6C0
+    case 🐝 // U+1F41D
+    case 😸 // U+1F638
+    case 💎 // U+1F48E
+    case 🍩 // U+1F369
+    case 👊 // U+1F44A
+    case 🐐 // U+1F410
+    case 👾 // U+1F47E
+    case 💋 // U+1F48B
+    case 🍄 // U+1F344
+    case 💩 // U+1F4A9
+    case 🚀 // U+1F680
+    case 😴 // U+1F634
+    case 🌟 // U+2B50
+    case 🍵 // U+1F375
+    case 🎩 // U+1F3A9
     
-    static let allValues = [Bathtub, Bee, Cat, Diamond, Donut, Fistbump, Goat, Invader, Kiss, Mushroom, Poop, Rocket, Sleep, Star, Tea, TopHat]
+    static let allValues = [🛀, 🐝, 😸, 💎, 🍩, 👊, 🐐, 👾, 💋, 🍄, 💩, 🚀, 😴, 🌟, 🍵, 🎩]
     
     static func random() -> Emoji {
         let count = UInt32(Emoji.allValues.count)
@@ -28,37 +28,37 @@ enum Emoji {
     
     var points: Int {
         switch self {
-        case .Diamond, .TopHat:
+        case 💎, 🎩:
             return 200
-        case .Bathtub, .Bee, .Sleep:
+        case 🛀, 🐝, 😴:
             return 150
-        case .Fistbump, .Goat, .Mushroom, .Tea:
+        case 👊, 🐐, 🍄, 🍵:
             return 100
-        case .Cat, .Donut, .Invader, .Kiss, .Rocket, .Star:
+        case 😸, 🍩, 👾, 💋, 🚀, 🌟:
             return 50
-        case .Poop:
+        case 💩:
             return 0
         }
     }
     
     var imageName: String {
         switch self {
-        case .Bathtub:  return "BathtubEmoji"
-        case .Bee:      return "BeeEmoji"
-        case .Cat:      return "CatEmoji"
-        case .Diamond:  return "DiamondEmoji"
-        case .Donut:    return "DonutEmoji"
-        case .Fistbump: return "FistbumpEmoji"
-        case .Goat:     return "GoatEmoji"
-        case .Invader:  return "InvaderEmoji"
-        case .Kiss:     return "KissEmoji"
-        case .Mushroom: return "MushroomEmoji"
-        case .Poop:     return "PoopEmoji"
-        case .Rocket:   return "RocketEmoji"
-        case .Sleep:    return "SleepEmoji"
-        case .Star:     return "StarEmoji"
-        case .Tea:      return "TeaEmoji"
-        case .TopHat:   return "TopHatEmoji"
+        case 🛀: return "BathtubEmoji"
+        case 🐝: return "BeeEmoji"
+        case 😸: return "CatEmoji"
+        case 💎: return "DiamondEmoji"
+        case 🍩: return "DonutEmoji"
+        case 👊: return "FistbumpEmoji"
+        case 🐐: return "GoatEmoji"
+        case 👾: return "InvaderEmoji"
+        case 💋: return "KissEmoji"
+        case 🍄: return "MushroomEmoji"
+        case 💩: return "PoopEmoji"
+        case 🚀: return "RocketEmoji"
+        case 😴: return "SleepEmoji"
+        case 🌟: return "StarEmoji"
+        case 🍵: return "TeaEmoji"
+        case 🎩: return "TopHatEmoji"
         }
     }
     
