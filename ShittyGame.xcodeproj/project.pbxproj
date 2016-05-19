@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B1E3C6C291FC0923713157E /* Pods_ShittyGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA7137A80669145342BB57A /* Pods_ShittyGame.framework */; };
 		851AA7F61CDBEA3200C09AF2 /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851AA7F51CDBEA3200C09AF2 /* Emoji.swift */; };
 		851AA7F81CDBEC0C00C09AF2 /* Emoji.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 851AA7F71CDBEC0C00C09AF2 /* Emoji.xcassets */; };
 		851AA7FE1CDCAF1E00C09AF2 /* Sounds.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 851AA7FD1CDCAF1E00C09AF2 /* Sounds.xcassets */; };
@@ -15,11 +16,10 @@
 		85B23D831CDB8F9A003A3CA6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B23D821CDB8F9A003A3CA6 /* ViewController.swift */; };
 		85B23D881CDB8F9A003A3CA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85B23D871CDB8F9A003A3CA6 /* Assets.xcassets */; };
 		85E2B7821CE211BA00B5CFEC /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E2B7811CE211BA00B5CFEC /* Sound.swift */; };
-		9F9DBFF6E9C8D71C2D9789EE /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F27C21840BB5E3384C01E5DD /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		05A85150F0BB3525F469F24C /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		5A09B42DBE3E69F9065D1BC7 /* Pods-ShittyGame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShittyGame.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShittyGame/Pods-ShittyGame.release.xcconfig"; sourceTree = "<group>"; };
 		851AA7F51CDBEA3200C09AF2 /* Emoji.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
 		851AA7F71CDBEC0C00C09AF2 /* Emoji.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Emoji.xcassets; sourceTree = "<group>"; };
 		851AA7FD1CDCAF1E00C09AF2 /* Sounds.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Sounds.xcassets; sourceTree = "<group>"; };
@@ -30,7 +30,8 @@
 		85B23D871CDB8F9A003A3CA6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		85B23D8C1CDB8F9A003A3CA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		85E2B7811CE211BA00B5CFEC /* Sound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
-		CB65584902B7E4F9C33044E4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		A435F1A665F5CEBE2FC32659 /* Pods-ShittyGame.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShittyGame.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShittyGame/Pods-ShittyGame.debug.xcconfig"; sourceTree = "<group>"; };
+		CAA7137A80669145342BB57A /* Pods_ShittyGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShittyGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F27C21840BB5E3384C01E5DD /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -39,7 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F9DBFF6E9C8D71C2D9789EE /* Pods.framework in Frameworks */,
+				1B1E3C6C291FC0923713157E /* Pods_ShittyGame.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,8 +51,18 @@
 			isa = PBXGroup;
 			children = (
 				F27C21840BB5E3384C01E5DD /* Pods.framework */,
+				CAA7137A80669145342BB57A /* Pods_ShittyGame.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		693B5DBC78CF1680F996A931 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A435F1A665F5CEBE2FC32659 /* Pods-ShittyGame.debug.xcconfig */,
+				5A09B42DBE3E69F9065D1BC7 /* Pods-ShittyGame.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		85B23D741CDB8F9A003A3CA6 = {
@@ -59,8 +70,8 @@
 			children = (
 				85B23D7F1CDB8F9A003A3CA6 /* ShittyGame */,
 				85B23D7E1CDB8F9A003A3CA6 /* Products */,
-				A0A1FFB91FEED1B42645FE55 /* Pods */,
 				32AA9733B1C8513EE3C5927B /* Frameworks */,
+				693B5DBC78CF1680F996A931 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -88,15 +99,6 @@
 			path = ShittyGame;
 			sourceTree = "<group>";
 		};
-		A0A1FFB91FEED1B42645FE55 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				CB65584902B7E4F9C33044E4 /* Pods.debug.xcconfig */,
-				05A85150F0BB3525F469F24C /* Pods.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -104,12 +106,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 85B23D8F1CDB8F9A003A3CA6 /* Build configuration list for PBXNativeTarget "ShittyGame" */;
 			buildPhases = (
-				381EDCB072984B851A1E2133 /* Check Pods Manifest.lock */,
+				1EACF628FB8DC54924A37BFB /* 📦 Check Pods Manifest.lock */,
 				85B23D791CDB8F9A003A3CA6 /* Sources */,
 				85B23D7A1CDB8F9A003A3CA6 /* Frameworks */,
 				85B23D7B1CDB8F9A003A3CA6 /* Resources */,
-				FE67BC95144F572E6817CBA8 /* Embed Pods Frameworks */,
-				AAEC16BE6C08BF111D8D2089 /* Copy Pods Resources */,
+				A7E6DE759F8E48300CB04CD7 /* 📦 Embed Pods Frameworks */,
+				EF773EB2521A8D16C2C4AA25 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -168,14 +170,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		381EDCB072984B851A1E2133 /* Check Pods Manifest.lock */ = {
+		1EACF628FB8DC54924A37BFB /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -183,34 +185,34 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		AAEC16BE6C08BF111D8D2089 /* Copy Pods Resources */ = {
+		A7E6DE759F8E48300CB04CD7 /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShittyGame/Pods-ShittyGame-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FE67BC95144F572E6817CBA8 /* Embed Pods Frameworks */ = {
+		EF773EB2521A8D16C2C4AA25 /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShittyGame/Pods-ShittyGame-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -315,7 +317,7 @@
 		};
 		85B23D901CDB8F9A003A3CA6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CB65584902B7E4F9C33044E4 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = A435F1A665F5CEBE2FC32659 /* Pods-ShittyGame.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -329,7 +331,7 @@
 		};
 		85B23D911CDB8F9A003A3CA6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 05A85150F0BB3525F469F24C /* Pods.release.xcconfig */;
+			baseConfigurationReference = 5A09B42DBE3E69F9065D1BC7 /* Pods-ShittyGame.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
