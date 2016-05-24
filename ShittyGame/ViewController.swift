@@ -3,6 +3,8 @@ import Cartography
 import SwiftColor
 import AVFoundation
 
+private let RunIntroSequence = true
+
 class ViewController: UIViewController {
     
     override func viewDidLoad() {
@@ -62,25 +64,27 @@ class ViewController: UIViewController {
         
         // Animations
         
-        performAfterSeconds(1.3) {
-            UIView.animateWithDuration(0.3) {
-                self.emojiButton.alpha = 1.0
+        if RunIntroSequence {
+            performAfterSeconds(1.3) {
+                UIView.animateWithDuration(0.3) {
+                    self.emojiButton.alpha = 1.0
+                }
+                // Start speech bubbles' downward motion
+                constrain(self.speechBubbleButton, replace: speechBubbleBottomConstraint) { speechBubbleButton in
+                    speechBubbleButton.bottom == speechBubbleButton.superview!.bottom - 30.0
+                }
+                UIView.animateWithDuration(1.3) {
+                    self.speechBubbleButton.layoutIfNeeded()
+                }
             }
-            // Start speech bubbles' downward motion
-            constrain(self.speechBubbleButton, replace: speechBubbleBottomConstraint) { speechBubbleButton in
-                speechBubbleButton.bottom == speechBubbleButton.superview!.bottom - 30.0
+            performAfterSeconds(1.9) {
+                UIView.animateWithDuration(0.7) {
+                    self.speechBubbleButton.alpha = 1.0
+                }
             }
-            UIView.animateWithDuration(1.3) {
-                self.speechBubbleButton.layoutIfNeeded()
+            performAfterSeconds(2.8) {
+                self.startTextTimer()
             }
-        }
-        performAfterSeconds(1.9) {
-            UIView.animateWithDuration(0.7) {
-                self.speechBubbleButton.alpha = 1.0
-            }
-        }
-        performAfterSeconds(2.8) {
-            self.startTextTimer()
         }
     }
     
@@ -90,7 +94,7 @@ class ViewController: UIViewController {
         let scoreLabel = UILabel(frame: .zero)
         scoreLabel.font = UIFont.systemFontOfSize(60.0)
         scoreLabel.text = "\(self.currentScore)"
-        scoreLabel.alpha = 0.0
+        scoreLabel.alpha = RunIntroSequence ? 0.0 : 1.0
         
         return scoreLabel
     }()
@@ -98,7 +102,7 @@ class ViewController: UIViewController {
     lazy var dieSideImageView: TouchDownImageView = {
         let dieSideImageView = TouchDownImageView(image: UIImage(named: "DieSide"))
         dieSideImageView.touchDownAction = self.tapDetected
-        dieSideImageView.userInteractionEnabled = false
+        dieSideImageView.userInteractionEnabled = !RunIntroSequence
         
         return dieSideImageView
     }()
@@ -116,8 +120,8 @@ class ViewController: UIViewController {
         emojiButton.setImage(self.currentEmoji.image, forState: .Normal)
         emojiButton.setImage(self.currentEmoji.image, forState: .Highlighted)
         emojiButton.addTarget(self, action: .tapDetected, forControlEvents: .TouchDown)
-        emojiButton.userInteractionEnabled = false
-        emojiButton.alpha = 0.0
+        emojiButton.userInteractionEnabled = !RunIntroSequence
+        emojiButton.alpha = RunIntroSequence ? 0.0 : 1.0
         
         return emojiButton
     }()
