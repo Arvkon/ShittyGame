@@ -66,7 +66,8 @@ class ViewController: UIViewController {
         
         if RunIntroSequence {
             performAfterSeconds(1.3) {
-                UIView.animateWithDuration(0.3) {
+                self.playSound(.Appearance)
+                UIView.animateWithDuration(0.25) {
                     self.emojiButton.alpha = 1.0
                 }
                 // Start speech bubbles' downward motion

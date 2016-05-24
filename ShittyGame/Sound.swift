@@ -1,6 +1,7 @@
 import Foundation
 
 enum Sound: String {
+    case Appearance = "Appearance"
     case EvilLaugh1 = "EvilLaugh1"
     case EvilLaugh2 = "EvilLaugh2"
     case EvilLaugh3 = "EvilLaugh3"
@@ -10,7 +11,7 @@ enum Sound: String {
     case KaChing = "KaChing"
     
     static let evilLaughs = [EvilLaugh1, EvilLaugh2, EvilLaugh3, EvilLaugh4, EvilLaugh5, EvilLaugh6]
-    static let allValues  = evilLaughs + [KaChing]
+    static let allValues  = [Appearance, KaChing] + evilLaughs
     
     static var indexOfPreviousEvilLaugh = -1
     
