@@ -4,21 +4,24 @@ enum Emoji {
     case 🛀 // U+1F6C0
     case 🐝 // U+1F41D
     case 😸 // U+1F638
+    case 🍀 // U+1F340
     case 💎 // U+1F48E
-    case 🍩 // U+1F369
+    case 🕊️ // U+1F54A
     case 👊 // U+1F44A
-    case 🐐 // U+1F410
     case 👾 // U+1F47E
+    case 🕹️ // U+1F579
     case 💋 // U+1F48B
-    case 🍄 // U+1F344
     case 💩 // U+1F4A9
     case 🚀 // U+1F680
-    case 😴 // U+1F634
-    case 🌟 // U+2B50
+    case 🎅🏻 // U+1F3FB
+    case 🖖 // U+1F596
     case 🍵 // U+1F375
     case 🎩 // U+1F3A9
+    case 🦄 // U+1F984
+    case 💡 // U+1F4A1
+    case 🤓 // U+1F913
     
-    static let allValues = [🛀, 🐝, 😸, 💎, 🍩, 👊, 🐐, 👾, 💋, 🍄, 💩, 🚀, 😴, 🌟, 🍵, 🎩]
+    static let allValues = [🛀, 🐝, 😸, 🍀, 💎, 🕊️, 👊, 👾, 🕹️, 💋, 💡, 🤓, 💩, 🚀, 🎅🏻, 🖖, 🍵, 🎩, 🦄]
     
     static func random() -> Emoji {
         let count = UInt32(Emoji.allValues.count)
@@ -28,13 +31,13 @@ enum Emoji {
     
     var points: Int {
         switch self {
-        case 💎, 🎩:
+        case 💎, 🎩, 🦄:
             return 200
-        case 🛀, 🐝, 😴:
+        case 🛀, 🐝, 🍀, 🕊️:
             return 150
-        case 👊, 🐐, 🍄, 🍵:
+        case 👊, 💋, 🤓, 🎅🏻, 🍵:
             return 100
-        case 😸, 🍩, 👾, 💋, 🚀, 🌟:
+        case 😸, 👾, 🕹️, 💡, 🚀, 🖖:
             return 50
         case 💩:
             return 0
@@ -46,19 +49,22 @@ enum Emoji {
         case 🛀: return "BathtubEmoji"
         case 🐝: return "BeeEmoji"
         case 😸: return "CatEmoji"
+        case 🍀: return "CloverEmoji"
         case 💎: return "DiamondEmoji"
-        case 🍩: return "DonutEmoji"
+        case 🕊️: return "DoveEmoji"
         case 👊: return "FistbumpEmoji"
-        case 🐐: return "GoatEmoji"
         case 👾: return "InvaderEmoji"
+        case 🕹️: return "JoystickEmoji"
         case 💋: return "KissEmoji"
-        case 🍄: return "MushroomEmoji"
+        case 💡: return "LightBulbEmoji"
+        case 🤓: return "NerdEmoji"
         case 💩: return "PoopEmoji"
         case 🚀: return "RocketEmoji"
-        case 😴: return "SleepEmoji"
-        case 🌟: return "StarEmoji"
+        case 🎅🏻: return "SantaEmoji"
+        case 🖖: return "SpockEmoji"
         case 🍵: return "TeaEmoji"
         case 🎩: return "TopHatEmoji"
+        case 🦄: return "UnicornEmoji"
         }
     }
     
