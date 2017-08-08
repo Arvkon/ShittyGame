@@ -31,40 +31,40 @@ enum Emoji {
     
     var points: Int {
         switch self {
-        case 💎, 🎩, 🦄:
+        case .💎, .🎩, .🦄:
             return 200
-        case 🛀, 🐝, 🍀, 🕊️:
+        case .🛀, .🐝, .🍀, .🕊️:
             return 150
-        case 👊, 💋, 🤓, 🎅🏻, 🍵:
+        case .👊, .💋, .🤓, .🎅🏻, .🍵:
             return 100
-        case 😸, 👾, 🕹️, 💡, 🚀, 🖖:
+        case .😸, .👾, .🕹️, .💡, .🚀, .🖖:
             return 50
-        case 💩:
+        case .💩:
             return 0
         }
     }
     
     var imageName: String {
         switch self {
-        case 🛀: return "BathtubEmoji"
-        case 🐝: return "BeeEmoji"
-        case 😸: return "CatEmoji"
-        case 🍀: return "CloverEmoji"
-        case 💎: return "DiamondEmoji"
-        case 🕊️: return "DoveEmoji"
-        case 👊: return "FistbumpEmoji"
-        case 👾: return "InvaderEmoji"
-        case 🕹️: return "JoystickEmoji"
-        case 💋: return "KissEmoji"
-        case 💡: return "LightBulbEmoji"
-        case 🤓: return "NerdEmoji"
-        case 💩: return "PoopEmoji"
-        case 🚀: return "RocketEmoji"
-        case 🎅🏻: return "SantaEmoji"
-        case 🖖: return "SpockEmoji"
-        case 🍵: return "TeaEmoji"
-        case 🎩: return "TopHatEmoji"
-        case 🦄: return "UnicornEmoji"
+        case .🛀: return "BathtubEmoji"
+        case .🐝: return "BeeEmoji"
+        case .😸: return "CatEmoji"
+        case .🍀: return "CloverEmoji"
+        case .💎: return "DiamondEmoji"
+        case .🕊️: return "DoveEmoji"
+        case .👊: return "FistbumpEmoji"
+        case .👾: return "InvaderEmoji"
+        case .🕹️: return "JoystickEmoji"
+        case .💋: return "KissEmoji"
+        case .💡: return "LightBulbEmoji"
+        case .🤓: return "NerdEmoji"
+        case .💩: return "PoopEmoji"
+        case .🚀: return "RocketEmoji"
+        case .🎅🏻: return "SantaEmoji"
+        case .🖖: return "SpockEmoji"
+        case .🍵: return "TeaEmoji"
+        case .🎩: return "TopHatEmoji"
+        case .🦄: return "UnicornEmoji"
         }
     }
     
@@ -73,6 +73,6 @@ enum Emoji {
     }
     
     var templateImage: UIImage {
-        return image.imageWithRenderingMode(.AlwaysTemplate)
+        return image.withRenderingMode(.alwaysTemplate)
     }
 }

@@ -67,19 +67,19 @@ class ViewController: UIViewController {
         if RunIntroSequence {
             performAfterSeconds(1.3) {
                 self.playSound(.Appearance)
-                UIView.animateWithDuration(0.25) {
+                UIView.animate(withDuration: 0.25) {
                     self.emojiButton.alpha = 1.0
                 }
                 // Start speech bubbles' downward motion
                 constrain(self.speechBubbleButton, replace: speechBubbleBottomConstraint) { speechBubbleButton in
                     speechBubbleButton.bottom == speechBubbleButton.superview!.bottom - 30.0
                 }
-                UIView.animateWithDuration(1.3) {
+                UIView.animate(withDuration: 1.3) {
                     self.speechBubbleButton.layoutIfNeeded()
                 }
             }
             performAfterSeconds(1.9) {
-                UIView.animateWithDuration(0.7) {
+                UIView.animate(withDuration: 0.7) {
                     self.speechBubbleButton.alpha = 1.0
                 }
             }
@@ -93,7 +93,7 @@ class ViewController: UIViewController {
     
     lazy var scoreLabel: UILabel = {
         let scoreLabel = UILabel(frame: .zero)
-        scoreLabel.font = UIFont.systemFontOfSize(60.0)
+        scoreLabel.font = UIFont.systemFont(ofSize: 60.0)
         scoreLabel.text = "\(self.currentScore)"
         scoreLabel.alpha = RunIntroSequence ? 0.0 : 1.0
         
@@ -103,14 +103,14 @@ class ViewController: UIViewController {
     lazy var dieSideImageView: TouchDownImageView = {
         let dieSideImageView = TouchDownImageView(image: UIImage(named: "DieSide"))
         dieSideImageView.touchDownAction = self.tapDetected
-        dieSideImageView.userInteractionEnabled = !RunIntroSequence
+        dieSideImageView.isUserInteractionEnabled = !RunIntroSequence
         
         return dieSideImageView
     }()
     
     class TouchDownImageView: UIImageView {
         var touchDownAction: (() -> Void)?
-        override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
             touchDownAction?()
         }
     }
@@ -118,10 +118,10 @@ class ViewController: UIViewController {
     lazy var emojiButton: UIButton = {
         let emojiButton = UIButton(frame: .zero)
         emojiButton.tintColor = UIColor("bbbbc8")
-        emojiButton.setImage(self.currentEmoji.image, forState: .Normal)
-        emojiButton.setImage(self.currentEmoji.image, forState: .Highlighted)
-        emojiButton.addTarget(self, action: .tapDetected, forControlEvents: .TouchDown)
-        emojiButton.userInteractionEnabled = !RunIntroSequence
+        emojiButton.setImage(self.currentEmoji.image, for: .normal)
+        emojiButton.setImage(self.currentEmoji.image, for: .highlighted)
+        emojiButton.addTarget(self, action: .tapDetected, for: .touchDown)
+        emojiButton.isUserInteractionEnabled = !RunIntroSequence
         emojiButton.alpha = RunIntroSequence ? 0.0 : 1.0
         
         return emojiButton
@@ -130,12 +130,12 @@ class ViewController: UIViewController {
     lazy var speechBubbleButton: UIButton = {
         let speechBubbleButton = UIButton(frame: .zero)
         speechBubbleButton.backgroundColor = UIColor("f1deb6")
-        speechBubbleButton.layer.borderColor = UIColor("674d3c").CGColor
+        speechBubbleButton.layer.borderColor = UIColor("674d3c").cgColor
         speechBubbleButton.layer.borderWidth = 2.0
         speechBubbleButton.layer.cornerRadius = 7.0
-        speechBubbleButton.titleLabel!.lineBreakMode = .ByWordWrapping
-        speechBubbleButton.addTarget(self, action: .speechBubbleTapped, forControlEvents: .TouchUpInside)
-        speechBubbleButton.userInteractionEnabled = false
+        speechBubbleButton.titleLabel!.lineBreakMode = .byWordWrapping
+        speechBubbleButton.addTarget(self, action: .speechBubbleTapped, for: .touchUpInside)
+        speechBubbleButton.isUserInteractionEnabled = false
         speechBubbleButton.alpha = 0.0
         
         return speechBubbleButton
@@ -143,14 +143,14 @@ class ViewController: UIViewController {
     
     lazy var coverView: UIView = {
         let coverView = UIView(frame: .zero)
-        coverView.backgroundColor = UIColor.brownColor()
+        coverView.backgroundColor = UIColor.brown
         
         return coverView
     }()
     
     lazy var hashtagLabel: UILabel = {
         let hashtagLabel = UILabel(frame: .zero)
-        hashtagLabel.font = UIFont.systemFontOfSize(17.0)
+        hashtagLabel.font = UIFont.systemFont(ofSize: 17.0)
         hashtagLabel.text = "#shittygamescore"
         hashtagLabel.textColor = UIColor("ffdc00")
         
@@ -167,14 +167,14 @@ class ViewController: UIViewController {
     
     var coverViewBottomOffset: CGFloat = 0.0
     
-    let pointsLabelFont = UIFont.systemFontOfSize(34.0, weight: UIFontWeightMedium)
+    let pointsLabelFont = UIFont.systemFont(ofSize: 34.0, weight: UIFontWeightMedium)
     
     var speechBubbleHasBeenDismissed = false
     
     lazy var speechBubbleAttributedText: NSAttributedString = {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 15.0
-        paragraphStyle.alignment = .Center
+        paragraphStyle.alignment = .center
         
         let attributes = [
             NSFontAttributeName: UIFont(name: "PressStart2P", size: 12.0)!,
@@ -193,11 +193,11 @@ class ViewController: UIViewController {
     
     // MARK: - Timers
     
-    var textTimer: NSTimer?
+    var textTimer: Timer?
     
     func startTextTimer() {
         textTimer?.invalidate()
-        textTimer = NSTimer.scheduledTimerWithTimeInterval(0.06, target: self, selector: .printNext, userInfo: nil, repeats: true)
+        textTimer = Timer.scheduledTimer(timeInterval: 0.06, target: self, selector: .printNext, userInfo: nil, repeats: true)
     }
     
     func stopTextTimer() {
@@ -209,17 +209,17 @@ class ViewController: UIViewController {
         guard printLength < speechBubbleAttributedText.length else {
             stopTextTimer()
             setUserInteractionEnabled(true)
-            speechBubbleButton.userInteractionEnabled = true
+            speechBubbleButton.isUserInteractionEnabled = true
             return
         }
         
         let string = speechBubbleAttributedText.string
-        let substr = string.substringToIndex(string.startIndex.advancedBy(printLength + 1))
+        let substr = string.substring(to: string.characters.index(string.startIndex, offsetBy: printLength + 1))
         printLength = substr.hasSuffix(" ") ? printLength + 2 : printLength + 1
         
         let range = NSRange(location: 0, length: printLength)
-        let title = speechBubbleAttributedText.attributedSubstringFromRange(range)
-        speechBubbleButton.setAttributedTitle(title, forState: .Normal)
+        let title = speechBubbleAttributedText.attributedSubstring(from: range)
+        speechBubbleButton.setAttributedTitle(title, for: .normal)
         
         if printLength == 20 {
             stopTextTimer()
@@ -231,11 +231,11 @@ class ViewController: UIViewController {
     
     // Emoji randomization timer
     
-    var emojiTimer: NSTimer?
+    var emojiTimer: Timer?
     
     func startEmojiTimer() {
         emojiTimer?.invalidate()
-        emojiTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: .changeEmoji, userInfo: nil, repeats: true)
+        emojiTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: .changeEmoji, userInfo: nil, repeats: true)
     }
     
     func stopEmojiTimer() {
@@ -245,8 +245,8 @@ class ViewController: UIViewController {
     
     // MARK: - Sound
     
-    lazy var soundData: [Sound: NSData] = {
-        var soundData = [Sound: NSData]()
+    lazy var soundData: [Sound: Data] = {
+        var soundData = [Sound: Data]()
         for sound in Sound.allValues {
             soundData[sound] = NSDataAsset(name: sound.rawValue)!.data
         }
@@ -267,9 +267,9 @@ class ViewController: UIViewController {
     var audioPlayers = [AVAudioPlayer]()
     var evilLaughPlayer: AVAudioPlayer?
     
-    func playSound(sound: Sound) {
+    func playSound(_ sound: Sound) {
         // Play sound on background queue to prevent lag
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)) {
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async {
             do {
                 let audioPlayer = try AVAudioPlayer(data: self.soundData[sound]!, fileTypeHint: AVFileTypeWAVE)
                 audioPlayer.delegate = self
@@ -287,9 +287,9 @@ class ViewController: UIViewController {
     
     // MARK: - Methods
     
-    func setUserInteractionEnabled(enabled: Bool) {
-        emojiButton.userInteractionEnabled = enabled
-        dieSideImageView.userInteractionEnabled = enabled
+    func setUserInteractionEnabled(_ enabled: Bool) {
+        emojiButton.isUserInteractionEnabled = enabled
+        dieSideImageView.isUserInteractionEnabled = enabled
     }
     
     func changeEmoji() {
@@ -297,17 +297,17 @@ class ViewController: UIViewController {
         while newEmoji == currentEmoji {
             newEmoji = Emoji.random()
         }
-        emojiButton.setImage(newEmoji.templateImage, forState: .Normal)
-        emojiButton.setImage(newEmoji.templateImage, forState: .Highlighted)
+        emojiButton.setImage(newEmoji.templateImage, for: .normal)
+        emojiButton.setImage(newEmoji.templateImage, for: .highlighted)
         currentEmoji = newEmoji
     }
     
     func tapDetected() {
         if speechBubbleHasBeenDismissed == false {
-            UIView.animateWithDuration(0.35) {
+            UIView.animate(withDuration: 0.35) {
                 self.speechBubbleButton.alpha = 0.0
             }
-            UIView.animateWithDuration(1.0) {
+            UIView.animate(withDuration: 1.0) {
                 self.scoreLabel.alpha = 1.0
             }
             speechBubbleHasBeenDismissed = true
@@ -321,48 +321,48 @@ class ViewController: UIViewController {
         
         stopEmojiTimer()
         
-        emojiButton.setImage(currentEmoji.image, forState: .Normal)
-        emojiButton.setImage(currentEmoji.image, forState: .Highlighted)
+        emojiButton.setImage(currentEmoji.image, for: .normal)
+        emojiButton.setImage(currentEmoji.image, for: .highlighted)
         
         if currentEmoji == .💩 {
             coverViewBottomOffset += view.bounds.height / 15
             constrain(coverView, replace: coverViewTopConstraint) { coverView in
                 coverView.top == coverView.superview!.bottom - coverViewBottomOffset
             }
-            UIView.animateWithDuration(0.5) {
+            UIView.animate(withDuration: 0.5) {
                 self.view.layoutIfNeeded()
             }
             setUserInteractionEnabled(false)
             playSound(Sound.randomEvilLaugh())
         } else {
             currentScore += currentEmoji.points
-            animatePointsLabelFor(currentEmoji)
+            animatePointsLabel(for: currentEmoji)
             playSound(.KaChing)
         }
     }
     
     func speechBubbleTapped() {
-        UIView.animateWithDuration(0.2, animations: {
-            self.dieSideImageView.transform = CGAffineTransformMakeScale(1.08, 1.08)
+        UIView.animate(withDuration: 0.2, animations: {
+            self.dieSideImageView.transform = CGAffineTransform(scaleX: 1.08, y: 1.08)
         }, completion: { _ in
-            UIView.animateWithDuration(0.2) {
-                self.dieSideImageView.transform = CGAffineTransformIdentity
+            UIView.animate(withDuration: 0.2) {
+                self.dieSideImageView.transform = CGAffineTransform.identity
             }
         })
     }
     
     func updateScoreLabel() {
-        UIView.animateWithDuration(0.1, animations: {
+        UIView.animate(withDuration: 0.1, animations: {
             self.scoreLabel.alpha = 0.0
         }, completion: { _ in
             self.scoreLabel.text = "\(self.currentScore)"
-            UIView.animateWithDuration(0.2) {
+            UIView.animate(withDuration: 0.2) {
                 self.scoreLabel.alpha = 1.0
             }
         })
     }
     
-    func animatePointsLabelFor(emoji: Emoji) {
+    func animatePointsLabel(for emoji: Emoji) {
         let pointsLabel = UILabel(frame: .zero)
         pointsLabel.textColor = UIColor("54b649")
         pointsLabel.text = "+\(emoji.points)"
@@ -382,7 +382,7 @@ class ViewController: UIViewController {
         constrain(pointsLabel, scoreLabel, replace: animationConstraint) { pointsLabel, scoreLabel in
             pointsLabel.top == scoreLabel.top
         }
-        UIView.animateWithDuration(0.6, animations: {
+        UIView.animate(withDuration: 0.6, animations: {
             self.view.layoutIfNeeded()
             pointsLabel.alpha = 0.0
         }, completion: { _ in
@@ -395,23 +395,23 @@ class ViewController: UIViewController {
         }
     }
     
-    func performAfterSeconds(seconds: Double, closure: () -> Void) {
-        let delay = dispatch_time(DISPATCH_TIME_NOW, Int64(Double(NSEC_PER_SEC) * seconds))
-        dispatch_after(delay, dispatch_get_main_queue()) {
+    func performAfterSeconds(_ seconds: Double, closure: @escaping () -> Void) {
+        let delay = DispatchTime.now() + Double(Int64(Double(NSEC_PER_SEC) * seconds)) / Double(NSEC_PER_SEC)
+        DispatchQueue.main.asyncAfter(deadline: delay) {
             closure()
         }
     }
 }
 
 extension ViewController: AVAudioPlayerDelegate {
-    func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         if player == evilLaughPlayer {
             changeEmoji()
             startEmojiTimer()
             evilLaughPlayer = nil
             setUserInteractionEnabled(true)
-        } else if let index = audioPlayers.indexOf(player) {
-            audioPlayers.removeAtIndex(index)
+        } else if let index = audioPlayers.index(of: player) {
+            audioPlayers.remove(at: index)
         }
     }
 }
