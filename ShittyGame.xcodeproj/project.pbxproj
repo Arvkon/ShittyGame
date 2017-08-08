@@ -106,12 +106,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 85B23D8F1CDB8F9A003A3CA6 /* Build configuration list for PBXNativeTarget "ShittyGame" */;
 			buildPhases = (
-				1EACF628FB8DC54924A37BFB /* 📦 Check Pods Manifest.lock */,
+				1EACF628FB8DC54924A37BFB /* [CP] Check Pods Manifest.lock */,
 				85B23D791CDB8F9A003A3CA6 /* Sources */,
 				85B23D7A1CDB8F9A003A3CA6 /* Frameworks */,
 				85B23D7B1CDB8F9A003A3CA6 /* Resources */,
-				A7E6DE759F8E48300CB04CD7 /* 📦 Embed Pods Frameworks */,
-				EF773EB2521A8D16C2C4AA25 /* 📦 Copy Pods Resources */,
+				A7E6DE759F8E48300CB04CD7 /* [CP] Embed Pods Frameworks */,
+				EF773EB2521A8D16C2C4AA25 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -170,44 +170,52 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1EACF628FB8DC54924A37BFB /* 📦 Check Pods Manifest.lock */ = {
+		1EACF628FB8DC54924A37BFB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ShittyGame-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A7E6DE759F8E48300CB04CD7 /* 📦 Embed Pods Frameworks */ = {
+		A7E6DE759F8E48300CB04CD7 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ShittyGame/Pods-ShittyGame-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Cartography/Cartography.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftColor/SwiftColor.framework",
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cartography.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftColor.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShittyGame/Pods-ShittyGame-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EF773EB2521A8D16C2C4AA25 /* 📦 Copy Pods Resources */ = {
+		EF773EB2521A8D16C2C4AA25 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
